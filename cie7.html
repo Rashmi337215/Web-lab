@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Script Tasks</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    p, ul, div {
+      margin: 10px 0;
+      padding: 10px;
+    }
+    p, ul li {
+      color: #333;
+    }
+    .box, .box2 {
+      width: 100px;
+      height: 100px;
+      margin: 10px 0;
+    }
+    .box {
+      background-color: #f4f4f4;
+    }
+    .box2 {
+      background-color: #ffe4e1;
+    }
+  </style>
+</head>
+<body>
+  <h2>Append content</h2>
+  <p id="para">This is an existing paragraph</p>
+  <ul id="list">
+    <li style="color: red; font-family: Georgia;">Item 1</li>
+    <li style="color: green; font-family: Verdana;">Item 2</li>
+  </ul>
+  <button id="appendBtn">Append content</button>
+
+  <h2>Animate elements</h2>
+  <div class="box" id="animateBox"></div>
+  <button id="animateBtn">Animate Box</button>
+
+  <div class="box2" id="animateBox2"></div>
+  <button id="animateBtn2">Animate Second Box</button>
+
+  <script>
+    $(document).ready(function() {
+      let itemCount = $('#list li').length;
+      const styles = [
+        { color: 'blue', font: 'Courier New' },
+        { color: 'purple', font: 'Tahoma' },
+        { color: 'orange', font: 'Comic Sans MS' }
+      ];
+
+      $('#appendBtn').click(function() {
+        if (itemCount < 5) {
+          const style = styles[itemCount - 2]; // starts from index 0
+          itemCount++;
+          $('#para').append(` Appended text ${itemCount}`);
+          $('#list').append(`<li style="color:${style.color}; font-family:${style.font};">Item ${itemCount}</li>`);
+        }
+      });
+
+      $('#animateBtn').click(function() {
+        $('#animateBox')
+          .css({
+            width: '100px',
+            height: '100px',
+            backgroundColor: '#f4f4f4'
+          })
+          .animate({
+            width: '150px',
+            height: '150px'
+          }, 500, function() {
+            $(this).css('background-color', 'lightblue');
+          });
+      });
+
+      $('#animateBtn2').click(function() {
+        $('#animateBox2')
+          .css({
+            width: '100px',
+            height: '100px',
+            backgroundColor: '#ffe4e1'
+          })
+          .animate({
+            width: '150px',
+            height: '150px'
+          }, 500, function() {
+            $(this).css('background-color', '#ffcccb');
+          });
+      });
+    });
+  </script>
+</body>
+</html>
+
